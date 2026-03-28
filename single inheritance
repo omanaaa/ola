@@ -1,0 +1,19 @@
+class A {
+    void sqr(int a) {
+        System.out.println("Square: " + a * a);
+    }
+}
+
+class B extends A {
+    void cube(int b) {
+        System.out.println("Cube: " + b * b * b);
+    }
+}
+
+class P51 {
+    public static void main(String[] args) {
+        B obj = new B();
+        obj.sqr(2);   // Inherited method from class A
+        obj.cube(4);  // Own method from class B
+    }
+}
