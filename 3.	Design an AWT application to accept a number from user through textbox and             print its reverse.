@@ -1,0 +1,79 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class ReverseNumberAWT extends Frame implements ActionListener {
+    Label label1, label2;
+    TextField textField;
+    Button button;
+
+    public ReverseNumberAWT() {
+        // Set layout
+        setLayout(new FlowLayout());
+
+        // Initialize components
+        label1 = new Label("Enter a number:");
+        textField = new TextField(12);
+        button = new Button("Reverse Number");
+        label2 = new Label("Result: ");
+
+        // Add action listener to the button
+        button.addActionListener(this);
+
+        // Add components to frame
+        add(label1);
+        add(textField);
+        add(button);
+        add(label2);
+
+        // Frame properties
+        setSize(380, 180);
+        setTitle("Reverse Number Calculator");
+        setVisible(true);
+
+        // Close window properly
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        try {
+            String input = textField.getText().trim();
+            
+            if (input.isEmpty()) {
+                label2.setText("Result: Please enter a number!");
+                return;
+            }
+            
+            int num = Integer.parseInt(input);
+            int reversedNum = reverseNumber(num);
+            
+            label2.setText("Result: " + num + " → " + reversedNum);
+            
+        } catch (NumberFormatException ex) {
+            label2.setText("Result: Invalid input! Enter digits only.");
+        }
+    }
+
+    // Method to reverse a number
+    public int reverseNumber(int n) {
+        int reverse = 0;
+        // Handle negative numbers
+        boolean isNegative = n < 0;
+        n = Math.abs(n);
+        
+        while (n != 0) {
+            int digit = n % 10;  // Get last digit
+            reverse = reverse * 10 + digit; // Append digit to reverse
+            n /= 10;  // Remove last digit
+        }
+        
+        return isNegative ? -reverse : reverse;
+    }
+
+    public static void main(String[] args) {
+        new ReverseNumberAWT();
+    }
+}
