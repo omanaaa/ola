@@ -1,0 +1,29 @@
+class Demo {
+    void display() {
+        System.out.println("Hello from Demo class");
+    }
+}
+
+class A extends Demo {
+    void sqr(int a) {
+        System.out.println("Square: " + a * a);
+    }
+}
+
+class B extends Demo {
+    void cube(int b) {
+        System.out.println("Cube: " + b * b * b);
+    }
+}
+
+class TestA {
+    public static void main(String[] args) {
+        A objA = new A();
+        objA.sqr(2);      // A's method
+        objA.display();   // Inherited from Demo
+        
+        B objB = new B();
+        objB.cube(4);     // B's method
+        objB.display();   // Inherited from Demo
+    }
+}
