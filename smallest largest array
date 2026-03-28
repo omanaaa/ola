@@ -1,0 +1,29 @@
+public class Pract11 {
+    public static void main(String[] args) {
+        int[] num = {13, 22, 23, 11, 4};
+        
+        int smallest = num[0];
+        int largest = num[0];
+        int i;
+        
+        // Print original array
+        System.out.print("Array: ");
+        for (i = 0; i < num.length; i++) {
+            System.out.print(num[i] + " ");
+        }
+        System.out.println();
+        
+        // Find smallest and largest
+        for (i = 1; i < num.length; i++) {
+            if (num[i] > largest) {
+                largest = num[i];
+            }
+            if (num[i] < smallest) {
+                smallest = num[i];
+            }
+        }
+        
+        System.out.println("Largest number in array: " + largest);
+        System.out.println("Smallest number in array: " + smallest);
+    }
+}
