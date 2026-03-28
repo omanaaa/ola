@@ -1,0 +1,89 @@
+import java.awt.*;  // Added missing import
+import java.awt.event.*;
+
+public class FactorialAWT extends Frame implements ActionListener {
+    Label label1, label2;
+    TextField textField;
+    Button button;
+
+    public FactorialAWT() {
+        // Set layout
+        setLayout(new FlowLayout());
+
+        // Initialize components
+        label1 = new Label("Enter a number (0-20):");
+        textField = new TextField(10);
+        button = new Button("Calculate Factorial");
+        label2 = new Label("Result: ");
+
+        // Add action listener to the button
+        button.addActionListener(this);
+
+        // Add components to frame
+        add(label1);
+        add(textField);
+        add(button);
+        add(label2);
+
+        // Frame properties
+        setSize(350, 180);
+        setTitle("Factorial Calculator");
+        setVisible(true);
+
+        // Close window properly
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        try {
+            String input = textField.getText().trim();
+            
+            if (input.isEmpty()) {
+                label2.setText("Result: Please enter a number!");
+                return;
+            }
+            
+            int num = Integer.parseInt(input);
+            
+            // Input validation for factorial
+            if (num < 0) {
+                label2.setText("Result: Factorial not defined for negative numbers!");
+                return;
+            }
+            if (num > 20) {
+                label2.setText("Result: Enter number <= 20 (to avoid overflow)!");
+                return;
+            }
+            
+            long fact = factorial(num);
+            label2.setText("Result: " + num + "! = " + fact);
+            
+        } catch (NumberFormatException ex) {
+            label2.setText("Result: Invalid input! Enter digits only.");
+        }
+    }
+
+    // Method to calculate factorial (0! = 1)
+    public long factorial(int n) {
+        if (n == 0) return 1;
+        long fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    public static void main(String[] args) {
+        // Set look and feel for better appearance
+        try {
+            Frame.class.getClasses();
+        } catch (Exception e) {
+            // Ignore
+        }
+        new FactorialAWT();
+    }
+}
