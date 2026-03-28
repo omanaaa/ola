@@ -1,0 +1,34 @@
+class Pract16 {
+    public static void main(String[] args) {
+        int a[][] = {{1, 23}, {5, 3}};
+        int b[][] = {{55, 63}, {17, 83}};
+        int c[][] = new int[2][2];
+        
+        int i, j;
+        
+        System.out.println("Matrix A:");
+        for (i = 0; i < 2; i++) {
+            for (j = 0; j < 2; j++) {
+                System.out.print(a[i][j] + " ");
+            }
+            System.out.println();
+        }
+        
+        System.out.println("Matrix B:");
+        for (i = 0; i < 2; i++) {
+            for (j = 0; j < 2; j++) {
+                System.out.print(b[i][j] + " ");
+            }
+            System.out.println();
+        }
+        
+        System.out.println("Matrix A + B:");
+        for (i = 0; i < 2; i++) {
+            for (j = 0; j < 2; j++) {
+                c[i][j] = a[i][j] + b[i][j];
+                System.out.print(c[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
